@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Post | {{ post.title }}{% endblock %}
+
+{% block content %}
+<h1>
+    {{ post.title }}
+</h1>
+<p class="post-content">
+    {{ post.content }}
+</p>
+<div class="post-date">
+    {{ post.created_at }}
+</div>
+
+<nav class="navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ post.get_edit_absolute_url }}">Edit Post<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+        </span>
+    </div>
+</nav>
+{% endblock %}
